@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KIRIM PESAN KE SI RULI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f3f3f3;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group textarea {
+      width: 100%;
+      height: 100px;
+      padding: 5px;
+    }
+
+    .form-group input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #0088cc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+      background-color: #006699;
+    }
+    input {
+      width: 100%;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>WAJIB MASUKAN NAMA*</h2>
+    <form>
+      <div class="form-group">
+        <label for="message">Masukan nama kamu*</label>
+        <input type="text" id="namamu" name="namamu" placeholder="masukan nama" required>
+      </div>
+      <div class="form-group">
+        <input type="submit" id="send-button" value="Send Message">
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.20.0/axios.min.js"></script>
+  <script>
+    document.getElementById('send-button').addEventListener('click', function() {
+      var namamu = document.getElementById('namamu').value;
+      var token = '7016195280:AAEXDy5ddvsnZ3O-ko9UnGzb7vfvk01QIZY';
+      var chatId = '-4285374830';
+
+      var url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${namamu}`;
+      var data = {
+        text: namamu
+      };
+// https://api.telegram.org/bot7016195280:AAEXDy5ddvsnZ3O-ko9UnGzb7vfvk01QIZY/sendMessage?chat_id=-4285374830&text=HalloGuys&parse_mode=index
+
+
+axios.post(url, data)
+        .then(function(response) {
+          console.log(response.data);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    });
+  </script>
+</body>
+</html>
